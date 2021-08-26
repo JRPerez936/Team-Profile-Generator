@@ -9,3 +9,8 @@ test('creates a employee object', () =>{
     expect(employee.email).toBe('Email');
     
 });
+test('check employee type', () =>{
+    const employee = new Employee('Dave',1,'Email');
+
+    expect(employee.employeeType()).toBe('Engineer');
+});
