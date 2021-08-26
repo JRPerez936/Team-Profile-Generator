@@ -49,7 +49,6 @@ promptUser()
     .then((data)=>{
         const employee1 = new Employee(data.name,data.id,data.email)
         console.log(employee1);
-        employee1.employeeType();
     })
     .catch(err =>{
         console.log(err);
