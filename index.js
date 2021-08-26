@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const Employee = require('./lib/Employee');
+const Manager = require("./lib/Manager");
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -48,7 +49,8 @@ const promptUser = () => {
 promptUser()
     .then((data)=>{
         const employee1 = new Employee(data.name,data.id,data.email)
-        console.log(employee1);
+        const manager1 = new Manager(employee1, 3);
+        console.log(manager1);
     })
     .catch(err =>{
         console.log(err);
