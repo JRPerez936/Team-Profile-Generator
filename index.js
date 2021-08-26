@@ -69,7 +69,7 @@ const promptUser = () => {
 promptUser()
     .then((data)=>{ 
         teamManager = new Manager(new Employee(data.name,data.id,data.email),data.office);
-        console.log(teamManager);
+        
     })
     .catch(err =>{
         console.log(err);
