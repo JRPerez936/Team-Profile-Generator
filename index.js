@@ -3,11 +3,13 @@ const Employee = require('./lib/Employee');
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
+var employees = [];
 
 const promptManager = () => {
     console.log(`
     =================
-    Welcome To Team Manager! Please Start By Entering Manager Role Information.
+    Welcome To Team Manager! 
+    Please Start By Entering Manager Role Information.
     =================
     `);
     return inquirer.prompt([
@@ -72,47 +74,8 @@ const promptEmployee = () =>{
     Add a New Employee
     =================
     `);
-    inquirer
+    return inquirer
         .prompt([
-            {
-                type: 'input',
-                name: 'name',
-                message: 'What is the employee`s name? (Required)',
-                validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter their name!');
-                    return false;
-                }
-                }
-            },
-            {
-                type: 'input',
-                name: 'id',
-                message: 'What is the employee`s ID? (Required)',
-                validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter their id!');
-                    return false;
-                }
-                }
-            },
-            {
-                type: 'input',
-                name: 'email',
-                message: 'What is the employee`s email? (Required)',
-                validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log('Please enter their email!');
-                    return false;
-                }
-                }
-            },
             {
                 type: 'list',
                 name: 'employeetype',
@@ -122,10 +85,150 @@ const promptEmployee = () =>{
         ])
         .then(({employeetype}) =>{
             if(employeetype === 'Engineer'){
-                console.log('This is an Engineer');
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            name: 'name',
+                            message: 'What is the employee`s name? (Required)',
+                            validate: nameInput => {
+                            if (nameInput) {
+                                return true;
+                            } else {
+                                console.log('Please enter their name!');
+                                return false;
+                            }
+                            }
+                        },
+                        {
+                            type: 'input',
+                            name: 'id',
+                            message: 'What is the employee`s ID? (Required)',
+                            validate: nameInput => {
+                            if (nameInput) {
+                                return true;
+                            } else {
+                                console.log('Please enter their id!');
+                                return false;
+                            }
+                            }
+                        },
+                        {
+                            type: 'input',
+                            name: 'email',
+                            message: 'What is the employee`s email? (Required)',
+                            validate: nameInput => {
+                            if (nameInput) {
+                                return true;
+                            } else {
+                                console.log('Please enter their email!');
+                                return false;
+                            }
+                            }
+                        },
+                        {
+                        type: 'input',
+                        name: 'github',
+                        message: 'What is the employee`s github? (Required)',
+                        validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter their gitHub!');
+                            return false;
+                        }
+                        }
+                        },
+                        {
+                            type: 'confirm',
+                            name: 'confirmAddEmployee',
+                            message: 'Would you like to enter another employee?',
+                            default: false
+                        }
+                    ])
+                    .then((data) =>{
+                        employees.push(new Engineer(new Employee(data.name,data.id,data.email),data.github));
+                        if(data.confirmAddEmployee){
+                            console.log(employees);
+                            return promptEmployee(employees);
+                        } else{
+                            console.log(employees);
+                            return employees;
+                        }
+                    })
             }
             if(employeetype === 'Intern'){
-                 console.log('This is an Intern');
+                inquirer
+                    .prompt([
+                        {
+                            type: 'input',
+                            name: 'name',
+                            message: 'What is the employee`s name? (Required)',
+                            validate: nameInput => {
+                            if (nameInput) {
+                                return true;
+                            } else {
+                                console.log('Please enter their name!');
+                                return false;
+                            }
+                            }
+                        },
+                        {
+                            type: 'input',
+                            name: 'id',
+                            message: 'What is the employee`s ID? (Required)',
+                            validate: nameInput => {
+                            if (nameInput) {
+                                return true;
+                            } else {
+                                console.log('Please enter their id!');
+                                return false;
+                            }
+                            }
+                        },
+                        {
+                            type: 'input',
+                            name: 'email',
+                            message: 'What is the employee`s email? (Required)',
+                            validate: nameInput => {
+                            if (nameInput) {
+                                return true;
+                            } else {
+                                console.log('Please enter their email!');
+                                return false;
+                            }
+                            }
+                        },
+                        {
+                        type: 'input',
+                        name: 'school',
+                        message: 'What is the employee`s school? (Required)',
+                        validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log('Please enter their school!');
+                            return false;
+                        }
+                        }
+                        },
+                        {
+                            type: 'confirm',
+                            name: 'confirmAddEmployee',
+                            message: 'Would you like to enter another employee?',
+                            default: false
+                        }
+                    ])
+                    .then((data) =>{
+                        employees.push(new Intern(new Employee(data.name,data.id,data.email),data.school));
+                        if(data.confirmAddEmployee){
+                            console.log(employees);
+                            return promptEmployee(employees);
+                        } else{
+                            console.log(employees);
+                            return employees;
+                        }
+                    })
             }
         });
 };
@@ -133,8 +236,8 @@ const promptEmployee = () =>{
 promptManager()
     .then((data)=>{ 
         teamManager = new Manager(new Employee(data.name,data.id,data.email),data.office);
-        promptEmployee();
     })
+    .then(promptEmployee)
     .catch(err =>{
         console.log(err);
     });
