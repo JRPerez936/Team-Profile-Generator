@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const Employee = require('./lib/Employee');
+const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 
 const promptUser = () => {
@@ -49,8 +50,8 @@ const promptUser = () => {
 promptUser()
     .then((data)=>{
         const employee1 = new Employee(data.name,data.id,data.email)
-        const manager1 = new Manager(employee1, 3);
-        console.log(manager1);
+        const engineer1 = new Engineer(employee1, data.name);
+        console.log(engineer1.getGithub());
     })
     .catch(err =>{
         console.log(err);
