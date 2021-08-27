@@ -25,9 +25,9 @@
 
 
   ## Usage
-  Following the installation steps will allow users to produce their own professional team profile as seen [here](https://drive.google.com/file/d/1g48H_bGi2BIbN_D4Jvdtjb5cyqCgYVbF/view)
+  Following the installation steps will allow users to produce their own professional team profile as seen [here](https://drive.google.com/file/d/1fA6-plqChy8ZcGsfYdTMrptUiSvNOYCU/view?usp=sharing)
   
-  https://drive.google.com/file/d/1g48H_bGi2BIbN_D4Jvdtjb5cyqCgYVbF/view
+  https://drive.google.com/file/d/1fA6-plqChy8ZcGsfYdTMrptUiSvNOYCU/view?usp=sharing
   
 
   ## License
