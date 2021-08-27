@@ -10,4 +10,5 @@ test('check engineer functions', () =>{
     const employee = new Employee('Dave',1,'Email');
     const engineer = new Engineer(employee);
     expect(engineer.getGithub()).toHaveProperty('github');
+    expect(engineer.getRole()).toHaveProperty('role'); 
 });

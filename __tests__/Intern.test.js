@@ -8,5 +8,6 @@ test('creates a intern object', () =>{
 test('check intern functions', () =>{
     const employee = new Employee('Dave',1,'Email');
     const intern = new Intern(employee, 'Rutgers');
-    intern.getSchool();
+    expect(intern.getRole()).toHaveProperty('role');
+    expect(intern.getSchool()).toHaveProperty('school');  
 });
