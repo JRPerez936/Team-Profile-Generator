@@ -3,7 +3,7 @@ const Employee = require('./lib/Employee');
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-var employees = [];
+const generatePage = require('./src/page-template');
 
 const promptManager = () => {
     console.log(`
@@ -65,15 +65,19 @@ const promptManager = () => {
               }
             }
         }
-    ])  
+    ]); 
 };
 
-const promptEmployee = () =>{
+const promptEmployee = employeeData =>{
     console.log(`
     =================
     Add a New Employee
     =================
     `);
+    if(!employeeData.employees){
+        employeeData.employees = [];
+        employeeData.employees.push(new Manager(new Employee(employeeData.name,employeeData.id,employeeData.email), employeeData.office));
+    }
     return inquirer
         .prompt([
             {
@@ -146,14 +150,13 @@ const promptEmployee = () =>{
                             default: false
                         }
                     ])
-                    .then((data) =>{
-                        employees.push(new Engineer(new Employee(data.name,data.id,data.email),data.github));
-                        if(data.confirmAddEmployee){
-                            console.log(employees);
-                            return promptEmployee(employees);
-                        } else{
-                            console.log(employees);
-                            return employees;
+                    .then(newEmployeeData =>{
+                        employeeData.employees.push(new Engineer(new Employee(newEmployeeData.name,newEmployeeData.id,newEmployeeData.email), newEmployeeData.github));
+                        if(newEmployeeData.confirmAddEmployee){          
+                            return promptEmployee(employeeData);
+                        } else{       
+                            console.log(employeeData);                    
+                            return employeeData;
                         }
                     })
             }
@@ -219,14 +222,13 @@ const promptEmployee = () =>{
                             default: false
                         }
                     ])
-                    .then((data) =>{
-                        employees.push(new Intern(new Employee(data.name,data.id,data.email),data.school));
-                        if(data.confirmAddEmployee){
-                            console.log(employees);
-                            return promptEmployee(employees);
-                        } else{
-                            console.log(employees);
-                            return employees;
+                    .then(newEmployeeData =>{
+                        employeeData.employees.push(new Intern(new Employee(newEmployeeData.name,newEmployeeData.id,newEmployeeData.email), newEmployeeData.school));
+                        if(newEmployeeData.confirmAddEmployee){  
+                            return promptEmployee(employeeData);
+                        } else{  
+                            console.log(employeeData);
+                            return employeeData;
                         }
                     })
             }
@@ -234,9 +236,6 @@ const promptEmployee = () =>{
 };
 
 promptManager()
-    .then((data)=>{ 
-        teamManager = new Manager(new Employee(data.name,data.id,data.email),data.office);
-    })
     .then(promptEmployee)
     .catch(err =>{
         console.log(err);
