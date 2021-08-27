@@ -1,7 +1,7 @@
   # WK10C-Team-Profile-Generator
 
   ## Description
-  This repo contains Node.js code for a "Team Profile Generator". I was tasked with building my own code in order for it to produce professional looking readme documents that anyone could use by following the steps listed in the installation section. By using Node.js and Inquirer, users will answer questions that will allow the program to produce a fully functional and professional Readme. An example of this process can be found [here](#usage)
+  This repo contains Node.js code for a "Team Profile Generator". I was tasked with building my own code in order for it to produce professional looking readme documents that anyone could use by following the steps listed in the installation section. By using Node.js, Jest, and Inquirer, users will answer questions that will allow the program to produce a fully functional and professional Readme. An example of this process can be found [here](#usage)
 
 
 
