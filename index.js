@@ -154,8 +154,7 @@ const promptEmployee = employeeData =>{
                         employeeData.employees.push(new Engineer(new Employee(newEmployeeData.name,newEmployeeData.id,newEmployeeData.email), newEmployeeData.github));
                         if(newEmployeeData.confirmAddEmployee){          
                             return promptEmployee(employeeData);
-                        } else{       
-                            console.log(employeeData);                    
+                        } else{                           
                             return employeeData;
                         }
                     })
@@ -227,7 +226,6 @@ const promptEmployee = employeeData =>{
                         if(newEmployeeData.confirmAddEmployee){  
                             return promptEmployee(employeeData);
                         } else{  
-                            console.log(employeeData);
                             return employeeData;
                         }
                     })
